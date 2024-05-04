@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: #ddd;
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      border-radius: 34px; /* Increased border-radius for rounder corners */
+      transition: 0.4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: #fff;
+      border-radius: 50%; /* Made the slider handle circular */
+      transition: 0.4s;
+    }
+
+    input:checked + .slider {
+      background-color: #3e8e41;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #3e8e41;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .site-card {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      padding: 20px;
+      text-align: center;
+      width: calc(50% - 40px); /* Changed width for two cards per row */
+      animation: fadeIn 1s ease-in-out both;
+    }
+
+    .site-card:nth-child(3) {
+      width: 100%; /* Made the third card full width */
+      max-width: calc(100% - 20px);
+    }
+
+    .site-card:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    body.dark-mode {
+      background-color: #333;
+      color: #ddd;
+    }
+
+    header.dark-mode {
+      background-color: #555;
+    }
+
+    .site-card.dark-mode {
+      background-color: #444;
+    }
+  </style>
+  <title>My Landing Page</title>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Sites</h1>
+    <label class="switch">
+      <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+      <span class="slider"></span>
+    </label>
+  </header>
+
+  <main>
+    <div class="site-card">
+      <h2>SEARCH</h2>
+      <a href="https://ranzo-white-devil.github.io/whitesearch/">WHITESEARCH</a>
+    </div>
+
+    <div class="site-card">
+      <h2>MOTIVATION</h2>
+      <a href="https://ranzo-white-devil.github.io/whitemot/">WHITEMOT</a>
+    </div>
+
+    <div class="site-card">
+      <h2>CALCULATOR</h2>
+      <a href="https://ranzo-white-devil.github.io/whitecalc/">WHITECALC</a>
+    </div>
+  </main>
+
+  <script>
+    function toggleDarkMode() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+
+      const header = document.querySelector('header');
+      header.classList.toggle('dark-mode');
+
+      const siteCards = document.querySelectorAll('.site-card');
+      siteCards.forEach((card) => {
+        card.classList.toggle('dark-mode');
+      });
+    }
+  </script>
+</body>
+</html>
